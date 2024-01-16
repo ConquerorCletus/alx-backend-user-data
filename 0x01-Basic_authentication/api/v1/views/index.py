@@ -11,4 +11,4 @@ app_views = Blueprint('app_views', __name__)
 def unauthorized_route():
     """ Endpoint to test unauthorized error handling
     """
-    abort(401)
+    abort(401, description='Unauthorized')
