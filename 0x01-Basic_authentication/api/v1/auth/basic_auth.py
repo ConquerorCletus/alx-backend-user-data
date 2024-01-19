@@ -10,12 +10,12 @@ class BasicAuth(Auth):
                                             authorization_header: str) -> str:
         """returns the Base64 part of the Authorization
         header for a Basic Authentication"""
-        if authorization_header is None or authorization_header is not str:
+        if authorization_header is None or not isinstance(authorization_header, str):
             return None
 
         if not authorization_header.startswith('Basic '):
             return None
 
         # Extract the Base64 part after 'Basic '
-        base64_part = authorization_header.split(' ', 1)[1].strip()
+        base64_part = authorization_header.split(' ')[-1]
         return base64_part
