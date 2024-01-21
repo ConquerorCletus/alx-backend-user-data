@@ -52,7 +52,7 @@ def before_request():
                 abort(403, description='Forbidden')
 
             if auth.session_cookie(request) is None:
-                abort(401)
+                abort(401, description='unauthorized')
 
         request.current_user = auth.current_user(request)
 
