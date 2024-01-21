@@ -45,15 +45,13 @@ def before_request():
 
         if require_auth:
 
-            if auth.authorization_header(request) is None:
-                abort(401, description='unauthorized')
+            if auth.authorization_header(request) is None\
+                    and auth.session_cookie(request) is None:
+                        abort(401, description='unauthorized')
 
             if auth.current_user(request) is None:
                 abort(403, description='Forbidden')
-
-            if auth.session_cookie(request) is None:
-                abort(401, description='unauthorized')
-
+ 
         request.current_user = auth.current_user(request)
 
 
